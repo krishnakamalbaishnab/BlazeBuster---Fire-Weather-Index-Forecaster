@@ -1,4 +1,4 @@
-from flask import Flask , jsonify,render_template, request
+from flask import Flask , jsonify,render_template, request, url_for
 import pickle
 import pandas as pd
 import numpy as np
@@ -19,6 +19,11 @@ standard_scaler= pickle.load(open("models/scaler.pkl",'rb'))
 @app.route("/")
 def index():
     return render_template('index.html')
+
+@app.route("/home")
+def home():
+    return render_template('home.html')
+
 
 @app.route("/predcitdata",methods=["GET","POST"])
 def predict_datapoint():

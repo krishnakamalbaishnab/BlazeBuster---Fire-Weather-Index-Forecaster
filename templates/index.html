@@ -3,10 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>BlazeBuster</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <p1>Well Come to the Predictor</p1>
+    <header>
+      <h1>Welcome to BlazeBuster</h1>
+    </header>
+    <main>
+      <p>
+        BlazeBuster is an advanced fire prediction system designed to help you
+        forecast the Fire Weather Index (FWI) accurately. By analyzing various
+        environmental factors, our tool provides critical insights to help
+        mitigate fire risks and enhance safety measures.
+      </p>
+      <p>
+        Click the button below to access our prediction model. Enter the
+        required data and get accurate FWI predictions in no time!
+      </p>
+      <div class="button-container">
+        <a href="{{ url_for('home') }}" class="btn">Go to Prediction Model</a>
+      </div>
+    </main>
   </body>
 </html>
