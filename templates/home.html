@@ -8,46 +8,187 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='styles.css') }}"
     />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      nav {
+        background-color: #008080;
+        padding: 15px 20px;
+        text-align: left;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        margin-right: 20px;
+        transition: color 0.3s;
+      }
+
+      nav a:hover {
+        color: #ff5722;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        gap: 40px;
+      }
+
+      .form-container {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+      }
+
+      .form-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #ff5722;
+      }
+
+      .form-container label {
+        display: block;
+        margin: 10px 0 5px;
+        font-weight: 500;
+      }
+
+      .form-container input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .form-container button {
+        width: 100%;
+        padding: 12px;
+        background-color: #ff5722;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .form-container button:hover {
+        background-color: #e64a19;
+      }
+
+      .info-section {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        flex: 1;
+      }
+
+      .info-section h2 {
+        color: #ff5722;
+        margin-bottom: 20px;
+      }
+
+      .info-section p {
+        margin-bottom: 10px;
+        line-height: 1.5;
+      }
+    </style>
   </head>
   <body>
-    <header>
-      <h1>Fire Weather Index Prediction</h1>
-    </header>
-    <main>
-      <form action="{{ url_for('predict_datapoint') }}" method="POST">
-        <label for="Temperature">Temperature:</label>
-        <input type="text" name="Temperature" id="Temperature" required /><br />
+    <nav>
+      <a href="{{ url_for('index') }}">Home</a>
+    </nav>
 
-        <label for="RH">Relative Humidity:</label>
-        <input type="text" name="RH" id="RH" required /><br />
+    <div class="container">
+      <div class="form-container">
+        <h2>FWI Prediction Form</h2>
+        <form action="{{ url_for('predict_datapoint') }}" method="POST">
+          <label for="Temperature">Temperature (°C):</label>
+          <input type="text" name="Temperature" id="Temperature" required />
 
-        <label for="Ws">Wind Speed:</label>
-        <input type="text" name="Ws" id="Ws" required /><br />
+          <label for="RH">Relative Humidity (%):</label>
+          <input type="text" name="RH" id="RH" required />
 
-        <label for="Rain">Rainfall:</label>
-        <input type="text" name="Rain" id="Rain" required /><br />
+          <label for="Ws">Wind Speed (km/h):</label>
+          <input type="text" name="Ws" id="Ws" required />
 
-        <label for="FFMC">FFMC:</label>
-        <input type="text" name="FFMC" id="FFMC" required /><br />
+          <label for="Rain">Rainfall (mm):</label>
+          <input type="text" name="Rain" id="Rain" required />
 
-        <label for="DMC">DMC:</label>
-        <input type="text" name="DMC" id="DMC" required /><br />
+          <label for="FFMC">FFMC (Fine Fuel Moisture Code):</label>
+          <input type="text" name="FFMC" id="FFMC" required />
 
-        <label for="ISI">ISI:</label>
-        <input type="text" name="ISI" id="ISI" required /><br />
+          <label for="DMC">DMC (Duff Moisture Code):</label>
+          <input type="text" name="DMC" id="DMC" required />
 
-        <label for="Classes">Classes:</label>
-        <input type="text" name="Classes" id="Classes" required /><br />
+          <label for="ISI">ISI (Initial Spread Index):</label>
+          <input type="text" name="ISI" id="ISI" required />
 
-        <label for="Region">Region:</label>
-        <input type="text" name="Region" id="Region" required /><br />
+          <label for="Classes">Classes (0 or 1):</label>
+          <input type="text" name="Classes" id="Classes" required />
 
-        <button type="submit" class="btn">Predict FWI</button>
-      </form>
+          <label for="Region">Region (1, 2, or 3):</label>
+          <input type="text" name="Region" id="Region" required />
 
-      {% if result %}
-      <h2>Prediction Result: {{ result }}</h2>
-      {% endif %}
-    </main>
+          <button type="submit">Predict FWI</button>
+        </form>
+
+        {% if result %}
+        <h2>Prediction Result: {{ result }}</h2>
+        {% endif %}
+      </div>
+
+      <div class="info-section">
+        <h2>Input Guide</h2>
+        <p>
+          <strong>Temperature (°C):</strong> Enter the temperature in degrees
+          Celsius (e.g., 25).
+        </p>
+        <p>
+          <strong>Relative Humidity (%):</strong> The percentage of humidity in
+          the air (e.g., 60).
+        </p>
+        <p>
+          <strong>Wind Speed (km/h):</strong> The speed of the wind in
+          kilometers per hour (e.g., 15).
+        </p>
+        <p>
+          <strong>Rainfall (mm):</strong> The amount of rainfall in millimeters
+          (e.g., 0.5).
+        </p>
+        <p>
+          <strong>FFMC:</strong> Fine Fuel Moisture Code, a value between 0-100
+          (e.g., 85).
+        </p>
+        <p>
+          <strong>DMC:</strong> Duff Moisture Code, a value indicating moisture
+          in duff layers (e.g., 45).
+        </p>
+        <p>
+          <strong>ISI:</strong> Initial Spread Index, a value representing fire
+          spread potential (e.g., 10).
+        </p>
+        <p>
+          <strong>Classes:</strong> Binary value indicating fire occurrence (0 =
+          No Fire, 1 = Fire).
+        </p>
+        <p><strong>Region:</strong> Select a region: 1, 2, or 3.</p>
+      </div>
+    </div>
   </body>
 </html>
