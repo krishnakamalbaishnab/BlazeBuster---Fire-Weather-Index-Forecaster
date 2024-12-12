@@ -19,22 +19,40 @@
   </head>
   <body>
     <header>
-      <h1>Welcome to BlazeBuster</h1>
+      <div class="hero">
+        <div class="hero-text">
+          <h1>Welcome to BlazeBuster</h1>
+          <p>Accurate Fire Weather Index Predictions for Algerian Forests</p>
+          <p>
+            BlazeBuster is an advanced fire prediction system designed to help
+            you forecast the Fire Weather Index (FWI) accurately. By analyzing
+            various environmental factors, our tool provides critical insights
+            to help mitigate fire risks and enhance safety measures.
+          </p>
+        </div>
+      </div>
     </header>
     <main>
-      <p>
-        BlazeBuster is an advanced fire prediction system designed to help you
-        forecast the Fire Weather Index (FWI) accurately. By analyzing various
-        environmental factors, our tool provides critical insights to help
-        mitigate fire risks and enhance safety measures.
-      </p>
-      <p>
-        Click the button below to access our prediction model. Enter the
-        required data and get accurate FWI predictions in no time!
-      </p>
-      <div class="button-container">
-        <a href="{{ url_for('home') }}" class="btn">Go to Prediction Model</a>
+      <section id="about" class="about">
+        <h2>About Algerian Forest Fires</h2>
+        <p>
+          Algerian forests face significant risks from wildfires, especially
+          during the hot summer months. These fires have devastating impacts on
+          ecosystems and local communities. BlazeBuster uses machine learning
+          models to predict the Fire Weather Index (FWI), providing timely
+          forecasts to help manage fire risks and protect lives.
+        </p>
+      </section>
+
+      <div class="cta-container">
+        <a href="{{ url_for('home') }}" class="cta-btn"
+          >Go to Prediction Model</a
+        >
       </div>
     </main>
+
+    <footer>
+      <p>&copy; 2024 BlazeBuster. All rights reserved.</p>
+    </footer>
   </body>
 </html>

@@ -1,58 +1,95 @@
-/* styles.css */
-
-/* General styles */
-
-
-body {
-    font-family: 'Roboto', Arial, sans-serif;
+/* Reset some default styling */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Roboto', sans-serif;
     background-color: #f4f4f4;
     color: #333;
 }
 
-/* Header styling */
-header {
-    background-color: #ff5722;
+/* Hero Section */
+.hero {
+    background-image: url('your-image.jpg'); /* Replace with your desired image */
+    background-size: cover;
+    background-position: center;
     color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 20px 0;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 2.5em;
-}
-
-/* Main content styling */
-main {
     padding: 20px;
+}
+
+.hero-text {
+    max-width: 700px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* About Section */
+#about {
+    background-color: white;
+    padding: 40px 20px;
     text-align: center;
 }
 
-p {
-    font-size: 1.2em;
-    line-height: 1.6;
+#about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
 }
 
-/* Button styling */
-.button-container {
-    margin-top: 20px;
+#about p {
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
+/* CTA Button */
+.cta-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.cta-btn {
+    background-color: #FF6F00;
     color: white;
-    background-color: #ff5722;
-    border: none;
-    border-radius: 5px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
     text-decoration: none;
-    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-    background-color: #e64a19;
+.cta-btn:hover {
+    background-color: #FF4F00;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #222;
+    color: white;
+}
+
+footer p {
+    font-size: 1rem;
 }
