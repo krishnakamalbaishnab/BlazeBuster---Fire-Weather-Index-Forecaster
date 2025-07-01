@@ -107,6 +107,57 @@
         margin-bottom: 10px;
         line-height: 1.5;
       }
+
+      /* Flash Messages */
+      .flash-messages {
+        margin-bottom: 20px;
+      }
+
+      .flash-message {
+        padding: 12px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        font-weight: 500;
+      }
+
+      .flash-success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+
+      .flash-error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+
+      /* Prediction Result Styling */
+      .prediction-result {
+        background: linear-gradient(135deg, #ff5722, #ff8a65);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        margin-top: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .result-value {
+        font-size: 36px;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+
+      .result-description {
+        font-size: 18px;
+        margin-top: 15px;
+      }
+
+      .risk-low { color: #4caf50; font-weight: bold; }
+      .risk-moderate { color: #ffeb3b; font-weight: bold; }
+      .risk-high { color: #ff9800; font-weight: bold; }
+      .risk-extreme { color: #f44336; font-weight: bold; }
     </style>
   </head>
   <body>
@@ -117,6 +168,19 @@
     <div class="container">
       <div class="form-container">
         <h2>FWI Prediction Form</h2>
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="flash-messages">
+              {% for category, message in messages %}
+                <div class="flash-message flash-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        
         <form action="{{ url_for('predict_datapoint') }}" method="POST">
           <label for="Temperature">Temperature (°C):</label>
           <input type="text" name="Temperature" id="Temperature" required />
@@ -149,7 +213,21 @@
         </form>
 
         {% if result %}
-        <h2>Prediction Result: {{ result }}</h2>
+        <div class="prediction-result">
+          <h3>🔥 Fire Weather Index Prediction</h3>
+          <div class="result-value">{{ result }}</div>
+          <p class="result-description">
+            {% if result|float < 5 %}
+              <span class="risk-low">🟢 Low Fire Risk</span>
+            {% elif result|float < 15 %}
+              <span class="risk-moderate">🟡 Moderate Fire Risk</span>
+            {% elif result|float < 25 %}
+              <span class="risk-high">🟠 High Fire Risk</span>
+            {% else %}
+              <span class="risk-extreme">🔴 Extreme Fire Risk</span>
+            {% endif %}
+          </p>
+        </div>
         {% endif %}
       </div>
 
